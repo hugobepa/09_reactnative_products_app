@@ -1,0 +1,35 @@
+https://docs.expo.dev/get-started/create-a-project/
+
+npx create-expo-app@latest ./ --template blank-typescript
+npx create-expo-app@latest ./ (por defecto)
+
+npm start -c
+
+a (abrir movil)
+r  (recargar app)
+
+movil-  conectar wifi casa
+	app "expo go" scannear QR 
+
+opciones:
+npm run android
+npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need to do iOS development without a Mac
+npm run web
+
+en app dejar solo _layout, (eliminar sun contenido) y  "rnfe" + tab Y:
+                                  - nombreFuncion rootLayout
+								  -poner  <Slot /> (expo-router)
+
+crear en en app  index.tsx mas  rnfe + tab
+
+constans/Color.ts : solamente eliminar todas la propiedades de color  no la funcion
+package.json: eliminar "reset-project": "node ./scripts/reset-project.js",
+
+
+eliminar:
+
+
+hooks/
+scripts/
+
+

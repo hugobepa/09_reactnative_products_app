@@ -1,0 +1,3 @@
+https://reactnative.dev/
+https://docs.expo.dev/
+npx create-expo-app@latest ./ --template blank-typescript

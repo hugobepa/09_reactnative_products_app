@@ -1,0 +1,30 @@
+https://stackoverflow.com/questions/73784217/expo-will-not-run-the-app-error-could-not-connect-to-tcp-port-5554-cannot-conn
+
+Error: could not connect to TCP port 5554: cannot connect to 127.0.0.1:5554
+expo o pantalla negra
+
+https://www.youtube.com/watch?v=JGUS8ip1xDg (desconfigurar red publico firefall)
+
+Android studio/more actions/virtual_device_manager/device_manager/dispositivo virtual/3 puntos/wipe-data
+
+npm start 
+
+---------
+
+adb kill-server
+
+adb start-server
+
+npm start  -c
+
+a
+
+sino se actualiza:
+
+r
+
+--------------------
+
+extends button no funciona en 
+android studio---customize--all settings
+Settings --> Tools --> Emulator --> uncheck "Launch in a tool window -apply
