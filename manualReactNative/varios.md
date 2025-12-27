@@ -84,3 +84,6 @@ https://zustand.docs.pmnd.rs/getting-started/introduction
 
 #permisos
 https://console.cloud.google.com/apis
+
+#enseñarContraseñaInput
+https://medium.com/@edgravill_81163/mostrar-contrase%C3%B1a-en-react-4e37f9b8cedd
