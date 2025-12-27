@@ -173,8 +173,8 @@ export const API_URL =
   STAGE === "prod"
     ? process.env.EXPO_PUBLIC_API_URL
     : Platform.OS === "ios"
-    ? process.env.EXPO_PUBLIC_API_IOS
-    : process.env.EXPO_PUBLIC_API_ANDROID;
+    ? process.env.EXPO_PUBLIC_API_URL_IOS
+    : process.env.EXPO_PUBLIC_API_URL_ANDROID;
 
 console.log({ STAGE, [Platform.OS]: API_URL });
 
@@ -184,5 +184,51 @@ const productsApi = axios.create({
 //TODO: interceptores
 
 export { productsApi };
+
+```
+
+# Verificar autentificacion(trabajo con status)
+
+"app\(products-app)\_layout.tsx":
+
+```
+import { useAuthStore } from "@/presentation/auth/store/useAuthStore";
+import { Redirect, Stack } from "expo-router";
+import React, { useEffect } from "react";
+import { ActivityIndicator, View } from "react-native";
+
+const CheckAutenticationLayout = () => {
+  const { status, checkStatus } = useAuthStore();
+
+  useEffect(() => {
+    checkStatus();
+  }, []);
+
+  if (status === "checking") {
+    return (
+      <View>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </View>
+    );
+  }
+
+  if (status === "unauthenticated") {
+    //TODO: guardar ruta del usuario
+    return <Redirect href="/auth/login" />;
+  }
+
+  return (
+    <Stack>
+      <Stack.Screen
+        name="(home)/index"
+        options={{
+          title: "Productos",
+        }}
+      />
+    </Stack>
+  );
+};
+
+export default CheckAutenticationLayout;
 
 ```
