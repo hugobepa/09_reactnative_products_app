@@ -30,6 +30,9 @@ export default function RootLayout() {
     Kanit_400Regular,
     Kanit_700Bold,
     Kanit_100Thin,
+    KanitRegular: require("../assets/fonts/Kanit-Regular.ttf"),
+    KanitBold: require("../assets/fonts/Kanit-Bold.ttf"),
+    KanitThin: require("../assets/fonts/Kanit-Thin.ttf"),
   });
 
   useEffect(() => {
