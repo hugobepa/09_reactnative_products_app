@@ -7,8 +7,16 @@ import {
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+//import { useFonts } from 'expo-font';
 
 //import { useColorScheme } from '@/hooks/use-color-scheme';
+
+// const [loaded] = useFonts({
+//     // SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+//     KanitRegular: require('../assets/fonts/Kanit-Regular.ttf'),
+//     KanitBold: require('../assets/fonts/Kanit-Bold.ttf'),
+//     KanitThin: require('../assets/fonts/Kanit-Thin.ttf'),
+//   });
 
 export const unstable_settings = {
   anchor: "(tabs)",
