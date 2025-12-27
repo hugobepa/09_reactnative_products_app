@@ -7,7 +7,7 @@ import {
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
-//import { useFonts } from 'expo-font';
+//import {Kanit_400Regular, useFonts } from 'expo-font';
 
 //import { useColorScheme } from '@/hooks/use-color-scheme';
 
