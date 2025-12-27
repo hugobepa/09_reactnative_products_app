@@ -44,6 +44,8 @@ const LoginScreen = () => {
           <View style={{ marginTop: 10 }} />
           {/**Boton */}
           <ThemedButton icon="arrow-forward-outline"> Ingresar</ThemedButton>
+
+          <View style={{ marginTop: 50 }} />
           {/**enlance registro */}
           <View
             style={{
@@ -53,8 +55,8 @@ const LoginScreen = () => {
             }}
           >
             <ThemedText>¿No tienes cuenta?</ThemedText>
-            <ThemedLink href="/auth/register" style={{ marginTop: 10 }}>
-              Crear Cuenta
+            <ThemedLink href="/auth/register" style={{ marginHorizontal: 5 }}>
+              Crear cuenta
             </ThemedLink>
           </View>
         </View>

@@ -1,19 +1,23 @@
-import { ExternalPathString, Link, RelativePathString } from "expo-router";
-import React from "react";
-import { Text, TextStyle } from "react-native";
+import { Link, LinkProps } from "expo-router";
+import { useThemeColor } from "../hooks/use-theme-color";
 
-interface Props {
-  children: string;
-  style?: TextStyle;
-  href: RelativePathString | ExternalPathString;
-}
+//import { useThemeColor } from '../hooks/useThemeColor';
 
-const ThemedLink = ({ href, style, children }: Props) => {
+interface Props extends LinkProps {}
+
+const ThemedLink = ({ style, ...rest }: Props) => {
+  const primaryColor = useThemeColor({}, "primary");
+
   return (
-    <Link href={href}>
-      <Text>{children}</Text>
-    </Link>
+    <Link
+      style={[
+        {
+          color: primaryColor,
+        },
+        style,
+      ]}
+      {...rest}
+    />
   );
 };
-
 export default ThemedLink;
