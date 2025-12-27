@@ -143,4 +143,46 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
 
 ```
 
-4. aa
+# AÑADIENDO VARIABLES DE ENTORNO:
+
+0. .env:
+
+```
+EXPO_PUBLIC_STAGE =dev
+
+#windows ip cable: terminal: ipconfig -- adaptador ethernet ethernet --- Dirección IPv4
+EXPO_PUBLIC_API_URL=http://Dirección IPv4:3000/api
+
+EXPO_PUBLIC_API_URL_IOS=http://localhost:3000/api
+
+
+#windows ip cable: terminal: ipconfig -- adaptador ethernet ethernet --- Dirección IPv4
+EXPO_PUBLIC_API_URL_ANDROID=http://Dirección IPv4:3000/api
+```
+
+1. "/core/auth/api/productsApi.ts" add variables entorno:
+
+```
+import axios from "axios";
+import { Platform } from "react-native";
+//TODO: conectar mediante envs vars, Android e IOS
+
+const STAGE = process.env.EXPO_PUBLIC_STAGE || "dev";
+
+export const API_URL =
+  STAGE === "prod"
+    ? process.env.EXPO_PUBLIC_API_URL
+    : Platform.OS === "ios"
+    ? process.env.EXPO_PUBLIC_API_IOS
+    : process.env.EXPO_PUBLIC_API_ANDROID;
+
+console.log({ STAGE, [Platform.OS]: API_URL });
+
+const productsApi = axios.create({
+  baseURL: API_URL,
+});
+//TODO: interceptores
+
+export { productsApi };
+
+```
