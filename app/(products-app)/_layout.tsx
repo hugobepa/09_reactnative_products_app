@@ -48,6 +48,7 @@ const CheckAutenticationLayout = () => {
         name="(home)/index"
         options={{
           title: "Productos",
+          headerShadowVisible: false,
         }}
       />
     </Stack>
