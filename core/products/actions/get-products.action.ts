@@ -9,6 +9,7 @@ const getProductsAction = async (limit = 20, offset = 0) => {
         offset,
       },
     });
+
     return data.map((product) => ({
       ...product,
       images: product.images.map(
