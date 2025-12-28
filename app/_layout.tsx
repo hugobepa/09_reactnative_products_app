@@ -5,6 +5,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 //import { useFonts } from "expo-font";
+import { useThemeColor } from "@/presentation/theme/hooks/use-theme-color";
 import {
   Kanit_100Thin,
   Kanit_400Regular,
@@ -28,6 +29,7 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const backgroundColor = useThemeColor({}, "background");
 
   const [fontloaded, fonterror] = useFonts({
     Kanit_400Regular,
@@ -49,14 +51,27 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView
+      style={{ backgroundColor: backgroundColor, flex: 1 }}
+    >
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
+        <Stack
+          screenOptions={{
+            headerShadowVisible: false,
+          }}
+        >
+          <Stack.Screen
+            name="auth/login/index"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="auth/register/index"
+            options={{ headerShown: false }}
+          />
+          {/* <Stack.Screen
           name="modal"
           options={{ presentation: "modal", title: "Modal" }}
-        /> */}
+        />  */}
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>
