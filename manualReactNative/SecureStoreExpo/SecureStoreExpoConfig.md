@@ -146,7 +146,53 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
 
 ```
 
-4. cerrar sesion "useAuthStore.logout()",botton custom "presentation\auth\components\LogoutIconButton.tsx":
+4.logear usuario utilizar "useAuthStore.login()", " app\auth\login\index.tsx":
+
+```
+import { useAuthStore } from "@/presentation/auth/store/useAuthStore";
+import ThemedButton from "@/presentation/theme/components/ThemedButton";
+import { router } from "expo-router";
+import React, { useState } from "react";
+import {Alert} from "react-native";
+
+const LoginScreen = () => {
+  const { login } = useAuthStore();
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const onLogin = async () => {
+    const { email, password } = form;
+    const wasSuccessful = await login(email, password);
+    if (wasSuccessful) {
+      router.replace("/");
+      return;
+    }
+    Alert.alert("Error", "Usuario o contraseña no son correctos");
+  };
+
+return(
+  ...
+
+    <ThemedTextInput
+            value={form.email}
+            onChangeText={(value) => setForm({ ...form, email: value })}
+          />
+
+
+    <ThemedButton
+            onPress={onLogin}
+            icon="arrow-forward-outline"
+          >
+            Ingresar
+          </ThemedButton>
+
+  ...
+
+)
+```
+
+5. cerrar sesion "useAuthStore.logout()",botton custom "presentation\auth\components\LogoutIconButton.tsx":
 
 ```
 import { useThemeColor } from "@/presentation/theme/hooks/use-theme-color";
@@ -170,7 +216,7 @@ export default LogoutIconButton;
 
 ```
 
-5. cerrar sesion llamando "LogoutIconButton", " app\(products-app)\_layout.tsx":
+6. cerrar sesion llamando "LogoutIconButton", " app\(products-app)\_layout.tsx":
 
 ```
 
