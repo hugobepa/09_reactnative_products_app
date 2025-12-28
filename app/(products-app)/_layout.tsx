@@ -1,3 +1,4 @@
+import LogoutIconButton from "@/presentation/auth/components/LogoutIconButton";
 import { useAuthStore } from "@/presentation/auth/store/useAuthStore";
 import { useThemeColor } from "@/presentation/theme/hooks/use-theme-color";
 import { Redirect, Stack } from "expo-router";
@@ -36,6 +37,7 @@ const CheckAutenticationLayout = () => {
     <Stack
       screenOptions={{
         headerShadowVisible: false,
+        //headerShown: false,
         headerStyle: {
           backgroundColor: backgroundColor,
         },
@@ -49,6 +51,7 @@ const CheckAutenticationLayout = () => {
         options={{
           title: "Productos",
           headerShadowVisible: false,
+          headerLeft: () => <LogoutIconButton />,
         }}
       />
     </Stack>
