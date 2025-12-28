@@ -1,12 +1,16 @@
+import { useProduct } from "@/presentation/products/hooks/useProduct";
 import { ThemedView } from "@/presentation/theme/components/themed-view";
+import ThemedActivityIndicator from "@/presentation/theme/components/ThemedActivityIndicator";
 import ThemedTextInput from "@/presentation/theme/components/ThemedTextInput";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "expo-router";
+import { Redirect, useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 
 const ProductScreen = () => {
   const navigation = useNavigation();
+  const { id } = useLocalSearchParams();
+  const { productQuery } = useProduct(`${id}`);
 
   useEffect(() => {
     //TODO: nombre de producto
@@ -14,6 +18,24 @@ const ProductScreen = () => {
       headerRight: () => <Ionicons name="camera-outline" size={25} />,
     });
   }, []);
+
+  useEffect(() => {
+    if (productQuery.data) {
+      navigation.setOptions({
+        title: productQuery.data.title,
+      });
+    }
+  }, [productQuery.data]);
+
+  if (productQuery.isLoading) {
+    return <ThemedActivityIndicator />;
+  }
+
+  if (!productQuery.data) {
+    return <Redirect href="/(products-app)/(home)" />;
+  }
+
+  const product = productQuery.data!;
 
   return (
     <KeyboardAvoidingView
