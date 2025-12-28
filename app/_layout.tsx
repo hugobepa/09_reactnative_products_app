@@ -1,10 +1,4 @@
 import { useColorScheme } from "@/presentation/theme/hooks/use-color-scheme";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-//import { useFonts } from "expo-font";
 import { useThemeColor } from "@/presentation/theme/hooks/use-theme-color";
 import {
   Kanit_100Thin,
@@ -12,14 +6,17 @@ import {
   Kanit_700Bold,
   useFonts,
 } from "@expo-google-fonts/kanit";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-//import{AppLoading}from "expo"
-
-//import { useColorScheme } from '@/hooks/use-color-scheme';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,35 +47,42 @@ export default function RootLayout() {
     return null;
   }
 
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
   return (
     <GestureHandlerRootView
       style={{ backgroundColor: backgroundColor, flex: 1 }}
     >
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack
-          screenOptions={{
-            headerShadowVisible: false,
-          }}
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
         >
-          <Stack.Screen
-            name="(products-app)"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="auth/login/index"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="auth/register/index"
-            options={{ headerShown: false }}
-          />
-          {/* <Stack.Screen
+          <Stack
+            screenOptions={{
+              headerShadowVisible: false,
+            }}
+          >
+            <Stack.Screen
+              name="(products-app)"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="auth/login/index"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="auth/register/index"
+              options={{ headerShown: false }}
+            />
+            {/* <Stack.Screen
           name="modal"
           options={{ presentation: "modal", title: "Modal" }}
         />  */}
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </QueryClientProvider>
     </GestureHandlerRootView>
   );
 }
