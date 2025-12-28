@@ -87,3 +87,7 @@ https://console.cloud.google.com/apis
 
 #enseñarContraseñaInput
 https://medium.com/@edgravill_81163/mostrar-contrase%C3%B1a-en-react-4e37f9b8cedd
+
+#guardar credenciales
+https://docs.expo.dev/versions/latest/sdk/securestore/
+https://www.npmjs.com/package/axios
