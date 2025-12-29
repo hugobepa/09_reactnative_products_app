@@ -2,12 +2,13 @@ import ProductImages from "@/presentation/products/components/ProductImages";
 import { useProduct } from "@/presentation/products/hooks/useProduct";
 import { ThemedView } from "@/presentation/theme/components/themed-view";
 import ThemedActivityIndicator from "@/presentation/theme/components/ThemedActivityIndicator";
+import ThemedButton from "@/presentation/theme/components/ThemedButton";
 import ThemedButtonGroup from "@/presentation/theme/components/ThemedButtonGroup";
 import ThemedTextInput from "@/presentation/theme/components/ThemedTextInput";
 import { Ionicons } from "@expo/vector-icons";
 import { Redirect, useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 
 const ProductScreen = () => {
   const navigation = useNavigation();
@@ -76,7 +77,30 @@ const ProductScreen = () => {
             selectedOptions={product.sizes}
             onSelect={(options) => console.log({ options })}
           />
+
+          <ThemedButtonGroup
+            options={["kid", "men", "women", "unisex"]}
+            selectedOptions={[product.gender]}
+            onSelect={(options) => console.log({ options })}
+          />
         </ThemedView>
+
+        {/**Boton guardar */}
+
+        <View
+          style={{
+            marginHorizontal: 10,
+            marginBottom: 50,
+            marginTop: 20,
+          }}
+        >
+          <ThemedButton
+            icon="save-outline"
+            onPress={() => console.log("guardar")}
+          >
+            Guardar
+          </ThemedButton>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
