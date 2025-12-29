@@ -46,3 +46,9 @@ return (
     >
 
 ```
+
+3. crear Acciones de crary actualizar, "core\products\actions\create-update-product.action.ts":
+
+```
+
+```
