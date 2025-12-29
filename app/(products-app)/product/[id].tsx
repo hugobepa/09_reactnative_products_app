@@ -21,6 +21,7 @@ const ProductScreen = () => {
     navigation.setOptions({
       headerRight: () => <Ionicons name="camera-outline" size={25} />,
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const ProductScreen = () => {
         title: productQuery.data.title,
       });
     }
+    // eslint-disable-next-line
   }, [productQuery.data]);
 
   if (productQuery.isLoading) {
