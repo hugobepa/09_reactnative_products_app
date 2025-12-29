@@ -85,10 +85,10 @@ const ProductScreen = () => {
   const product = productQuery.data!;
 
   return (
-
+        //propiedad sencilla
         <Text>{product.title}</Text>
 
-
+         //matriz doble array
          <FlatList
           data={product.images}
           keyExtractor={(item) => item}
@@ -107,6 +107,15 @@ const ProductScreen = () => {
           )}
         />
 
+
+        //array simple
+        <View>
+      {product.sizes.map((size) => (
+        <TouchableOpacity key={size}>
+          <Text>{size}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
 
 
   );
