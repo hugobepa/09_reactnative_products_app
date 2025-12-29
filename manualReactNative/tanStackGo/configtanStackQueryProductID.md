@@ -60,7 +60,7 @@ import ThemedActivityIndicator from "@/presentation/theme/components/ThemedActiv
 import { Text } from "@react-navigation/elements";
 import { Redirect, useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect } from "react";
-
+import {FlatList,Image,Text} from "react-native";
 const ProductScreen = () => {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams();
@@ -87,6 +87,28 @@ const ProductScreen = () => {
   return (
 
         <Text>{product.title}</Text>
+
+
+         <FlatList
+          data={product.images}
+          keyExtractor={(item) => item}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Image
+              source={{ uri: item }}
+              style={{
+                width: 300,
+                height: 300,
+                marginHorizontal: 7,
+                borderRadius: 5,
+              }}
+            />
+          )}
+        />
+
+
+
   );
 };
 
