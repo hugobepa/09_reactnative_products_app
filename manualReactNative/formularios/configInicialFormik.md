@@ -41,6 +41,7 @@ terminal: npm install lodash
    - cambiar dentro del return( donde ponia product a values)
    - añadir en TextInput (value={values.title},onChangeText={handleChange("title")})
    - añadir en selectores (values, setFieldValue)
+   - añadir (handleSumbit) en button
 
 ```
   import { Size } from '@/core/products/interfaces/product.interface';
@@ -81,4 +82,9 @@ terminal: npm install lodash
                   setFieldValue("gender", selectedOption)
                 }
               />
+
+
+                 <ThemedButton icon="save-outline" onPress={() => handleSubmit()}>
+                Guardar
+              </ThemedButton>
 ```

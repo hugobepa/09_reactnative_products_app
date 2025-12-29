@@ -14,7 +14,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
 const ProductScreen = () => {
   const navigation = useNavigation();
   const { id } = useLocalSearchParams();
-  const { productQuery } = useProduct(`${id}`);
+  const { productQuery, productMutacion } = useProduct(`${id}`);
 
   useEffect(() => {
     //TODO: nombre de producto
@@ -42,10 +42,7 @@ const ProductScreen = () => {
   const product = productQuery.data!;
 
   return (
-    <Formik
-      initialValues={product}
-      onSubmit={(productLike) => console.log({ productLike })}
-    >
+    <Formik initialValues={product} onSubmit={productMutacion.mutate}>
       {({ values, handleSubmit, handleChange, setFieldValue }) => (
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -133,10 +130,7 @@ const ProductScreen = () => {
                 marginTop: 20,
               }}
             >
-              <ThemedButton
-                icon="save-outline"
-                onPress={() => console.log("guardar")}
-              >
+              <ThemedButton icon="save-outline" onPress={() => handleSubmit()}>
                 Guardar
               </ThemedButton>
             </View>

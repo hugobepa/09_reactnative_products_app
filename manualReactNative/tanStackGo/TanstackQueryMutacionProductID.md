@@ -1,17 +1,16 @@
-///http://localhost:3000/api/products/a51a6c52-d923-42fe-9785-19792b984fa1
+//https://tanstack.com/query/v4/docs/framework/react/guides/mutations
+https://tanstack.com/query/v4/docs/framework/react/reference/useMutation
 
-import getProductByIdAction from "@/core/products/actions/get-product-by-id.action";
+1. crear un hook con tanStackQueryProduct, " presentation\products\hooks\useProduct.ts ":
+
+```
 import { Product } from "@/core/products/interface/product.interface";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Alert } from "react-native";
 
 export const useProduct = (productId: string) => {
-  const productQuery = useQuery({
-    queryKey: ["products", productId],
-    queryFn: () => getProductByIdAction(productId),
-    staleTime: 1000 * 60 * 60, //1h
-  });
 
+.....
   //mutacion
   const productMutacion = useMutation({
     mutationFn: async (data: Product) => {
@@ -25,10 +24,25 @@ export const useProduct = (productId: string) => {
     },
   });
 
-  //Mantener ID del producto en caso nuevo
 
   return {
     productQuery,
     productMutacion,
   };
 };
+```
+
+2. utilizar Mutatione en screen, "app\(products-app)\product\[id].tsx":
+
+```
+import { useProduct } from "@/presentation/products/hooks/useProduct";
+
+const { productQuery, productMutacion } = useProduct(`${id}`);
+
+return (
+    <Formik
+      initialValues={product}
+      onSubmit={productMutacion.mutate}
+    >
+
+```
