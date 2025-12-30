@@ -5,6 +5,7 @@ import { CameraType, CameraView, useCameraPermissions } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
 import {
+  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,12 +16,14 @@ import {
 export default function CameraScreen() {
   const [facing, setFacing] = useState<CameraType>("back");
   const [permission, requestPermission] = useCameraPermissions();
+  const [selectedImage, setSelectedImage] = useState<string>();
+
   const cameraViewRef = useRef<CameraView>(null);
   if (!permission) {
     // Camera permissions are still loading.
     return <View />;
   }
-
+  //obtener permiso camara
   if (!permission.granted) {
     // Camera permissions are not granted yet.
     return (
@@ -42,7 +45,7 @@ export default function CameraScreen() {
       </View>
     );
   }
-
+  //action take photo
   const onShutterButtonPress = async () => {
     if (!cameraViewRef.current) return;
     const picture = await cameraViewRef.current.takePictureAsync({
@@ -50,18 +53,40 @@ export default function CameraScreen() {
     });
     console.log({ picture });
     if (!picture?.uri) return;
+    setSelectedImage(picture.uri);
     //TODO: guardar imagen
-  };
-
-  const onReturnCancel = () => {
-    //TODO: limpiar estado
-    router.dismiss();
   };
 
   function toggleCameraFacing() {
     setFacing((current) => (current === "back" ? "front" : "back"));
   }
 
+  //action  take and show photo
+  const onReturnCancel = () => {
+    //TODO: limpiar estado
+    router.dismiss();
+  };
+  //action show photo
+  const onPictureAccepted = () => {
+    //TODO: implementar function
+  };
+
+  const onRetakePhoto = () => {
+    setSelectedImage(undefined);
+  };
+
+  //mostrar foto hecha
+  if (selectedImage) {
+    return (
+      <View style={styles.container}>
+        <Image source={{ uri: selectedImage }} style={styles.camera} />
+        <ConfirmImageButton onPress={onPictureAccepted} />
+        <RetakeImageButton onPress={onRetakePhoto} />
+        <ReturnCancelButton onPress={onReturnCancel} />
+      </View>
+    );
+  }
+  //screen take picture
   return (
     <View style={styles.container}>
       <CameraView ref={cameraViewRef} style={styles.camera} facing={facing}>
@@ -78,7 +103,7 @@ export default function CameraScreen() {
   );
 }
 
-//Custom Components
+//Custom Components take photo
 const ShutterButton = ({ onPress = () => {} }) => {
   const dimensions = useWindowDimensions();
   const primaryColor = useThemeColor({}, "primary");
@@ -114,10 +139,42 @@ const GalleryButton = ({ onPress = () => {} }) => {
     </TouchableOpacity>
   );
 };
+//Custom Components take and show photo
 const ReturnCancelButton = ({ onPress = () => {} }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.returnCancelButton}>
       <Ionicons name="arrow-back-outline" size={30} color={"white"} />
+    </TouchableOpacity>
+  );
+};
+
+//Custom Components show photo
+const ConfirmImageButton = ({ onPress = () => {} }) => {
+  const dimensions = useWindowDimensions();
+  const primaryColor = useThemeColor({}, "primary");
+
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        styles.shutterButton,
+        {
+          position: "absolute",
+          bottom: 30,
+          left: dimensions.width / 2 - 32,
+          borderColor: primaryColor,
+        },
+      ]}
+    >
+      <Ionicons name="checkmark-outline" size={30} color={primaryColor} />
+    </TouchableOpacity>
+  );
+};
+
+const RetakeImageButton = ({ onPress = () => {} }) => {
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.flipCameraButton}>
+      <Ionicons name="close-outline" size={30} color={"white"} />
     </TouchableOpacity>
   );
 };
