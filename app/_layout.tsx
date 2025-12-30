@@ -78,8 +78,8 @@ export default function RootLayout() {
             <Stack.Screen
               name="camera/index"
               options={{
-                title: "camera",
-                // headerShown: false,
+                //title: "camera",
+                headerShown: false,
               }}
             />
             {/* <Stack.Screen
