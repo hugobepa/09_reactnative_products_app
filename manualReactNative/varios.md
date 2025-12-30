@@ -91,3 +91,7 @@ https://medium.com/@edgravill_81163/mostrar-contrase%C3%B1a-en-react-4e37f9b8ced
 #guardar credenciales
 https://docs.expo.dev/versions/latest/sdk/securestore/
 https://www.npmjs.com/package/axios
+
+#construcionApp
+https://docs.expo.dev/build/setup/
+https://docs.expo.dev/build/introduction/
