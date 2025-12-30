@@ -95,3 +95,6 @@ https://www.npmjs.com/package/axios
 #construcionApp
 https://docs.expo.dev/build/setup/
 https://docs.expo.dev/build/introduction/
+
+#camara
+https://docs.expo.dev/versions/latest/sdk/camera/
