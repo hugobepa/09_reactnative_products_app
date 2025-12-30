@@ -75,6 +75,13 @@ export default function RootLayout() {
               name="auth/register/index"
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="camera/index"
+              options={{
+                title: "camera",
+                // headerShown: false,
+              }}
+            />
             {/* <Stack.Screen
           name="modal"
           options={{ presentation: "modal", title: "Modal" }}
