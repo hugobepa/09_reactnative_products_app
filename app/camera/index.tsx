@@ -31,6 +31,7 @@ export default function CameraScreen() {
         return;
       }
       const { status: mediaPermissionStatus } = await requestMediaPermission();
+
       if (mediaPermissionStatus !== "granted") {
         Alert.alert("lo siento", "necesitamos permisos para la galeria");
         return;

@@ -27,6 +27,94 @@ AUDIO permission not declared AndroidManifest Update expo-media-library config p
 
 AUDIO not declared AndroidManifest Update expo-media-library config plugin
 
+ia:
+Para actualizar la configuración del plugin
+expo-media-library, lo haces directamente en tu archivo app.json (o app.config.js) si usas Continuous Native Generation (CNG) de Expo, o manualmente si no; defines las propiedades en el array de plugins para expo-media-library, como photos, cameraRoll, etc., y luego reconstruyes tu app con npx expo run:ios o npx expo run:android
+
+],
+[
+"expo-media-library",
+{
+"photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+"savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+"isAccessMediaLocationEnabled": true,
+"granularPermissions": ["audio", "photo"]
+}
+],
+java -version
+[System.Environment]::SetEnvironmentVariable('JAVA_HOME', 'C:\Program Files\Eclipse Adoptium\jdk-21.x.x.x-hotspot', 'User')
+npx expo run:android.
+[System.Environment]::SetEnvironmentVariable('JAVA_HOME', 'C:\Path\To\Your\JDK', 'User')
+
+C:\Program Files\Java\jdk-25
+java -version
+npx expo run:android
+npx expo prebuild
+Encuentra tu ruta de Java (JDK):
+
+    Abre el Explorador de Archivos.
+    Navega a `C:\Program Files\Java\` (o `C:\Program Files (x86)\Java\`) y copia la ruta completa de tu carpeta JDK (ej. C:\Program Files\Java\jdk-17.0.1).
+
+Accede a las Variables de Entorno:
+
+    Haz clic derecho en Este equipo (o Mi PC) y selecciona Propiedades.
+
+Haz clic en Configuración avanzada del sistema.
+En la ventana de Propiedades del sistema, ve a la pestaña Opciones avanzadas y haz clic en Variables de entorno.
+
+Crea la variable JAVA_HOME:
+
+    En la sección Variables del sistema, haz clic en Nueva... (si no existe).
+
+Nombre de la variable: JAVA_HOME (en mayúsculas).
+Valor de la variable: Pega la ruta que copiaste en el paso 1 (ej. C:\Program Files\Java\jdk-17.0.1).
+Haz clic en Aceptar en todas las ventanas para guardar los cambios.
+
+Verifica (Opcional):
+
+    Abre un nuevo Símbolo del sistema (CMD).
+
+Escribe echo %JAVA_HOME% y presiona Enter. Debería mostrarte la ruta que configuraste.
+
+```
+app.json:
+"plugins": [
+
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ],
+      "expo-font",
+
+trminal: npx expo prebuild --clean (create android package)
+         npx eas build --profile developement
+         expo install expo-dev-client
+npx expo run:android
+https://developer.android.com/reference/android/Manifest.permission
+
+android\app\src\debug\AndroidManifest.xml    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+```
+
+"plugins": [
+
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ],
+      "expo-font",
+
 "plugins": [
 ...
 "expo-font",
