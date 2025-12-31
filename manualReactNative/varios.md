@@ -100,3 +100,5 @@ https://docs.expo.dev/build/introduction/
 
 #camara
 https://docs.expo.dev/versions/latest/sdk/camera/
+https://docs.expo.dev/versions/latest/sdk/media-library/#usage
+https://docs.expo.dev/versions/latest/sdk/imagepicker/
