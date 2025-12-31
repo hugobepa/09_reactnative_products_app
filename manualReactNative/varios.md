@@ -102,3 +102,17 @@ https://docs.expo.dev/build/introduction/
 https://docs.expo.dev/versions/latest/sdk/camera/
 https://docs.expo.dev/versions/latest/sdk/media-library/#usage
 https://docs.expo.dev/versions/latest/sdk/imagepicker/
+
+#prepararParaSubirAndroidIOS
+https://expo.dev/
+https://docs.expo.dev/build/setup/
+
+#subirAndoid
+https://docs.expo.dev/submit/android/
+https://developer.android.com/distribute/console?hl=es-419
+https://snapdrop.net
+
+#subirIos
+https://docs.expo.dev/submit/ios/
+https://appstoreconnect.apple.com/login
+https://appstoreconnect.apple.com/login
