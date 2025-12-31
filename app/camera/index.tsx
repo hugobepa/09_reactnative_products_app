@@ -1,3 +1,4 @@
+import { useCameraStore } from "@/presentation/store/useCameraStore";
 import { ThemedText } from "@/presentation/theme/components/themed-text";
 import { useThemeColor } from "@/presentation/theme/hooks/use-theme-color";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,6 +17,7 @@ import {
 } from "react-native";
 
 export default function CameraScreen() {
+  const { addSelectedImage } = useCameraStore();
   const [facing, setFacing] = useState<CameraType>("back");
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [selectedImage, setSelectedImage] = useState<string>();
@@ -30,7 +32,9 @@ export default function CameraScreen() {
         Alert.alert("lo siento", "necesitamos permisos para la camara");
         return;
       }
-      const { status: mediaPermissionStatus } = await requestMediaPermission();
+      //const { status: mediaPermissionStatus } = await requestMediaPermission();
+      const { status: mediaPermissionStatus } =
+        await MediaLibrary.requestPermissionsAsync();
 
       if (mediaPermissionStatus !== "granted") {
         Alert.alert("lo siento", "necesitamos permisos para la galeria");
@@ -95,6 +99,7 @@ export default function CameraScreen() {
     //TODO: implementar function
     if (!selectedImage) return;
     await MediaLibrary.createAssetAsync(selectedImage);
+    addSelectedImage(selectedImage);
     console.log("fotoAceptada");
     router.dismiss();
   };

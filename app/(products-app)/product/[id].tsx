@@ -16,10 +16,19 @@ import {
 import { Formik } from "formik";
 import React, { useEffect } from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import { useCameraStore } from "../../../presentation/store/useCameraStore";
 const ProductScreen = () => {
+  const { selectedImages, clearImages } = useCameraStore();
   const navigation = useNavigation();
   const { id } = useLocalSearchParams();
   const { productQuery, productMutacion } = useProduct(`${id}`);
+
+  useEffect(() => {
+    return () => {
+      clearImages();
+    };
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     //TODO: nombre de producto
@@ -61,7 +70,7 @@ const ProductScreen = () => {
         >
           <ScrollView>
             {/**TODO: Product image*/}
-            <ProductImages images={values.images} />
+            <ProductImages images={[...product.images, ...selectedImages]} />
 
             <ThemedView style={{ marginHorizontal: 10, marginTop: 20 }}>
               <ThemedTextInput

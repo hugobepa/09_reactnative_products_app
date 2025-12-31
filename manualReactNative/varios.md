@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 https://docs.expo.dev/versions/latest/sdk/safe-area-context/ (import { SafeAreaView } from 'react-native-safe-area-context';)
 
