@@ -15,7 +15,13 @@ import {
 } from "expo-router";
 import { Formik } from "formik";
 import React, { useEffect } from "react";
-import { KeyboardAvoidingView, Platform, ScrollView, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  RefreshControl,
+  ScrollView,
+  View,
+} from "react-native";
 import { useCameraStore } from "../../../presentation/store/useCameraStore";
 const ProductScreen = () => {
   const { selectedImages, clearImages } = useCameraStore();
@@ -63,12 +69,29 @@ const ProductScreen = () => {
   const product = productQuery.data!;
 
   return (
-    <Formik initialValues={product} onSubmit={productMutacion.mutate}>
+    <Formik
+      initialValues={product}
+      onSubmit={(productLike) =>
+        productMutacion.mutate({
+          ...productLike,
+          images: [...productLike.images, ...selectedImages],
+        })
+      }
+    >
       {({ values, handleSubmit, handleChange, setFieldValue }) => (
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
         >
-          <ScrollView>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={productQuery.isFetching}
+                onRefresh={async () => {
+                  await productQuery.refetch();
+                }}
+              />
+            }
+          >
             {/**TODO: Product image*/}
             <ProductImages images={[...product.images, ...selectedImages]} />
 

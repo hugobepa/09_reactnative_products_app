@@ -3,11 +3,14 @@
 import { updateCreateProductAction } from "@/core/products/actions/create-update-product.action";
 import getProductByIdAction from "@/core/products/actions/get-product-by-id.action";
 import { Product } from "@/core/products/interface/product.interface";
+import { useCameraStore } from "@/presentation/store/useCameraStore";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { Alert } from "react-native";
 
 export const useProduct = (productId: string) => {
+  const { clearImages } = useCameraStore();
+
   const queryClient = useQueryClient();
   const productIdRef = useRef(productId); //new/UUID
 
@@ -26,6 +29,8 @@ export const useProduct = (productId: string) => {
       }), //:updateCreateProductAction,
     onSuccess(data: Product) {
       productIdRef.current = data.id;
+
+      clearImages();
 
       queryClient.invalidateQueries({ queryKey: ["products", "infinite"] });
       queryClient.invalidateQueries({ queryKey: ["products", data.id] });
